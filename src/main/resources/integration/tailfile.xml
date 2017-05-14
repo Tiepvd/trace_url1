@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-file="http://www.springframework.org/schema/integration/file"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration
+    http://www.springframework.org/schema/integration/spring-integration.xsd
+    http://www.springframework.org/schema/integration/file
+    http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+    ">
+    <!--<bean id="exec" class="com.vnptnet"/>-->
+
+    <int:channel id="toTopicChannel"/>
+    <int-file:tail-inbound-channel-adapter enable-status-reader="true" id="apache"
+                                           channel="toTopicChannel"
+                                           file="D:/tmp/messages-20170514.log"
+                                           delay="2000"
+                                           end="false"
+                                           reopen="true"
+                                           file-delay="10000"/>
+
+    <int:outbound-channel-adapter ref="fileContentRecordingService" method="sendLinesToTopic" channel="toTopicChannel"/>
+</beans>
