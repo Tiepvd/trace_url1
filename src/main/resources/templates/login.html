@@ -8,24 +8,25 @@
     <link rel="stylesheet"
           th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../static/css/login.css"/>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css"/>
 </head>
 <body>
+
 <div class="container">
     <!--
     <div data-bind="visible: showErrorMessage" class="alert alert-error">
       Invalid username/password.
     </div>
     -->
-    <div th:if="${param.error}">
+    <div class="alert alert-error" data-bind="visible: showErrorMessage" th:if="${param.error}">
         Invalid username and password.
     </div>
-    <div th:if="${param.logout}">
+    <div class="alert" th:if="${param.logout}">
         You have been logged out.
     </div>
-    <form class="form-signin" method="post" action="@{/login}">
+    <form class="form-signin" method="POST" th:action="@{/login}">
         <h3 class="muted form-signin-heading">Please sign in</h3>
-        <input type="text" class="input-block-level" placeholder="User name" name="username"/>
+        <input type="text" class="input-block-level" placeholder="User name" name="email"/>
         <input type="password" class="input-block-level" placeholder="Password" name="password"/>
         <button class="btn btn-primary" type="submit">Sign in</button>
         <!--<hr>-->
