@@ -15,7 +15,7 @@
     <int:channel id="toTopicChannel"/>
     <int-file:tail-inbound-channel-adapter enable-status-reader="true" id="apache"
                                            channel="toTopicChannel"
-                                           file="D:/tmp/messages-20170514.log"
+                                           file="E:/ftp folder/tmp/messages-20170613.log"
                                            delay="2000"
                                            end="false"
                                            reopen="true"

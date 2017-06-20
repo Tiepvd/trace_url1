@@ -47,7 +47,10 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
         $scope.socket.client = new SockJS(URLS.tailFilesURL);  //new WebSocket('ws://' + window.location.host + URLS.tailFilesURL);
         $scope.socket.stomp = Stomp.over($scope.socket.client);
         $scope.socket.stomp.connect({}, function() {
-            $scope.socket.stomp.subscribe(URLS.tailFilesTopic, $scope.notify);
+            for (var i=0;i<TAGS.length;i++) {
+                $scope.socket.stomp.subscribe(URLS.tailFilesTopic+TAGS[i], $scope.notify);
+                // console.log("tag" + TAGS[i]);
+            }
         });
         $scope.socket.client.onclose = $scope.reconnect;
     };

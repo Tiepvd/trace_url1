@@ -6,7 +6,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("/integration/tailfile.xml")
+//@ImportResource("/integration/tailfile.xml")
 public class TraceUrlApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

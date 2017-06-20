@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Tracing URL</title>
+    <title>Tracing URL </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet"
@@ -29,14 +28,13 @@
         /*<![CDATA[*/
         var URLS = {};
         URLS.tailFilesURL = /*[[@{/tailfilesep}]]*/ '/tailfilesep';
-        URLS.tailFilesTopic = /*[[@{/topic/tailfiles}]]*/ '/topic/tailfiles';
+        URLS.tailFilesTopic = /*[[@{/topic/tailfiles/}]]*/ '/topic/tailfiles/';
+        var TAGS = /*[[${tags}]]*/ null;
         /*]]>*/
     </script>
     <script th:src="@{/js/tailfileapp.js}" src="../../static/js/talfileapp.js"></script>
 </head>
 <body>
-Logged user: <span sec:authentication="name"></span> <br/>
-Roles: <span sec:authentication="principal.authorities"></span>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -46,11 +44,16 @@ Roles: <span sec:authentication="principal.authorities"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]! </h1>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-            <a class="navbar-brand" href="#">Tracing url .....</a>
+            <!--<a class="navbar-brand" href="#" >Tracing url .....</a>-->
+            <a class="navbar-brand" href="#" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]] </a>
+            <!--<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]] </h2>-->
+            <div class="row">
+                <div class="col-xs-12">
+                    <form  th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="navbar-collapse collapse">
         </div>
@@ -61,7 +64,7 @@ Roles: <span sec:authentication="principal.authorities"></span>
         <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
             <div class="row">
                 <div class="col-xs-12">
-                    <h4>Tailing file: <span th:text="${filename}">test.txt</span></h4>
+                    <!--<h4>Tailing file: <span th:text="${filename}">test.txt</span></h4>-->
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="row" ng-if="statusmessage != ''">

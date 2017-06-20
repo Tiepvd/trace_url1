@@ -6,7 +6,7 @@
     <groupId>com.vnptnet</groupId>
     <artifactId>trace_url</artifactId>
     <version>0.0.1</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>trace_url</name>
     <description>Trace url to find msisdn</description>
